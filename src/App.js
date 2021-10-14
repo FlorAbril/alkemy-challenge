@@ -13,7 +13,6 @@ import Home from './Home';
 
 function App() {
   const token = localStorage.getItem('token')
-  console.log(token)
 
   return (
     <div className="App">
