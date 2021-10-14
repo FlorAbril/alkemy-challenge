@@ -4,7 +4,7 @@ export default function Statistics() {
   return(
     <div style={{maxWidth:"30rem"}}>
       <Card style={{marginTop:"1em",marginBottom:"1em"}}>
-        <Card.Header>Powerstars acumulados</Card.Header>
+        <Card.Header>Powerstats acumulados</Card.Header>
         <ListGroup variant="flush" > 
           <ListGroupItem>
             <Row>
