@@ -1,4 +1,4 @@
-import { Card, Col, Container, ListGroup, ListGroupItem, Row,Button, CardImg } from "react-bootstrap";
+import { Card, Col, ListGroup, ListGroupItem, Row,Button } from "react-bootstrap";
 
 
 export default function HeroCard({hero}) {
