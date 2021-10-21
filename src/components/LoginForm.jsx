@@ -4,10 +4,10 @@ import Card from "react-bootstrap/Card";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export default function LoginForm() {
-  let history = useHistory();
+  const [, setToken] = useLocalStorage('token')
   const schema = Yup.object({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
@@ -35,8 +35,7 @@ export default function LoginForm() {
             },
           })
             .then((res) => {
-              localStorage.setItem("token", res.data.token);
-              history.push("/");
+              setToken(res.data.token);
             })
             .catch(({ response }) => {
               const message = response.data.error;

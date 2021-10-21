@@ -1,20 +1,9 @@
+import { useContext } from "react";
+import { HeroesContext } from "../store/HeroesProvider";
 import HeroCard from "./HeroCard";
 
 export default function Heroes() {
-  const heroes = [
-    {
-      id: "414",
-      name: "Loki",
-      powerstats: {
-          intelligence: "88",
-          strength: "63",
-          speed: "46",
-          durability: "85",
-          power: "100",
-          combat: "60"
-      }
-    }
-  ]
+  const [heroes,] = useContext(HeroesContext)
   
   return(
     <div style={{

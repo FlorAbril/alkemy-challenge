@@ -1,9 +1,9 @@
-import Heroes from "./components/Heroes";
-import Statistics from "./components/Statistics";
+import Heroes from "../components/Heroes";
+import Statistics from "../components/Statistics";
 import { Container, FormControl, InputGroup, Navbar,Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import axios from "axios";
-
+import newHero from "../hooks/useHero";
 
 export default function Home() {
   const {handleSubmit,
@@ -13,15 +13,16 @@ export default function Home() {
      search:''
    },
    onSubmit: (values) => {
-    axios({
-      method: 'get',
-      url: `https://superheroapi.com/api/4356384401116515/search/${values.search}`,
-    })
-      .then(function (res) {
-        console.log(res);
-      });
+    axios
+    .get(
+      `https://superheroapi.com/api.php/4356384401116515/search/${values.search}`,
+    )
+    .then(function (res) {
+      console.log(res);
+    });
    }
  })
+
   return (
     <>
       <Navbar bg="dark" variant="dark">

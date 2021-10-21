@@ -6,30 +6,33 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import Home from './Home';
+import Home from './pages/Home';
 import SearchResults from './components/SearchResults';
-
+import { useLocalStorage } from './hooks/useLocalStorage';
+import HeroesProvider from './store/HeroesProvider';
 
 function App() {
-  const token = localStorage.getItem('token')
+  const [token] = useLocalStorage('token')
 
   return (
-    <div className="App">
-    <Router>
-      <Route exact path="/">
-        {!token ? <Redirect to="/login" /> : <Home/>}
-      </Route>
-       
-      <Route path="/login">
-        {!token ? <LoginForm/> : <Redirect to="/" />} 
-      </Route>
+    <HeroesProvider>
+      <div className="App">
+      <Router>
+        <Route exact path="/">
+          {!token ? <Redirect to="/login" /> : <Home/>}
+        </Route>
+        
+        <Route path="/login">
+          {!token ? <LoginForm/> : <Redirect to="/" />} 
+        </Route>
 
-      <Route path="/search">
-        <SearchResults/>
-      </Route>
-     
-    </Router>
-    </div>
+        <Route path="/search">
+          <SearchResults/>
+        </Route>
+      
+      </Router>
+      </div>
+    </HeroesProvider>
   );
 }
 
