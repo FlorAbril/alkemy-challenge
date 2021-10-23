@@ -9,13 +9,12 @@ import {
 import Home from './pages/Home';
 import SearchResults from './components/SearchResults';
 import { useLocalStorage } from './hooks/useLocalStorage';
-import HeroesProvider from './store/HeroesProvider';
 
 function App() {
   const [token] = useLocalStorage('token')
 
   return (
-    <HeroesProvider>
+    
       <div className="App">
       <Router>
         <Route exact path="/">
@@ -32,7 +31,7 @@ function App() {
       
       </Router>
       </div>
-    </HeroesProvider>
+  
   );
 }
 

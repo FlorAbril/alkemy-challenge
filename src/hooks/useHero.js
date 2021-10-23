@@ -1,16 +1,7 @@
 import axios from "axios"
 
-const newHero =  async (heroid) =>{
-  let response
-  let error 
-  try{
-   response = await axios
-      .get(`https://superheroapi.com/api.php/4356384401116515/${heroid}`)
-  }
-  catch(e){
-    error = e
-  }
-  const {id, name,powerstats,biography,appearance,work,image} = response.data
+const newHero = (heroData) => {
+  const {id, name,powerstats,biography,appearance,work,image} = heroData
 
   const hero = {
     id: id,
@@ -36,6 +27,43 @@ const newHero =  async (heroid) =>{
     }
   }
   return hero
+
 }
 
-export default newHero
+const getHeroById =  async (heroid) =>{
+  let response
+  let error 
+  try{
+   response = await axios
+      .get(`https://superheroapi.com/api.php/4356384401116515/${heroid}`)
+  }
+  catch(e){
+    error = e
+  }
+
+  return newHero(response.data)
+  
+}
+
+const getHeroesByName = async (name) =>{
+  let response
+  let error 
+  try{
+   response = await axios
+      .get(`https://superheroapi.com/api.php/4356384401116515/search/${name}`)
+  }
+  catch(e){
+    error = e
+  }
+
+  const search = response.data["results-for"]
+  let results = []
+  
+  response.data.results.map(hero =>{
+    results.push(newHero(hero))
+  })
+
+  return {search,results}
+}
+
+export {getHeroById,getHeroesByName}

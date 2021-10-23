@@ -3,8 +3,9 @@ import { HeroesContext } from "../store/HeroesProvider";
 import HeroCard from "./HeroCard";
 
 export default function Heroes() {
-  const [heroes,] = useContext(HeroesContext)
-  
+  const [state,] = useContext(HeroesContext)
+  const {heroesTeam} = state
+
   return(
     <div style={{
       display: "flex",
@@ -13,11 +14,11 @@ export default function Heroes() {
       justifyContent: "center",
       margin: "1em 0"
     }}>
-      {heroes.length == 0 
+      {heroesTeam.length === 0 
         ? 
           <h4>Aún no tienes un equipo</h4>
         : 
-        heroes.map(hero =><HeroCard hero={hero}/>)
+        heroesTeam.map(hero =><HeroCard hero={hero}/>)
       }
 
      
