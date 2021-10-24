@@ -1,15 +1,9 @@
 const ACTIONS = {
-  saveSearch: 'save - search',
-  deleteSearch: 'delete - search',
   saveHero: 'save - hero',
   deleteHero: 'delete - hero'
 }
 
 const initialState = {
-  searchResults:{
-    search:'',
-    results:[]
-  },
   heroesTeam:[]
 }
 
@@ -17,16 +11,9 @@ const initialState = {
 const heroesReducer = (state,action) => {
   switch (action.type) {
     case ACTIONS.saveHero:
-      return state.heroesTeam.push(action.payload)
-    case ACTIONS.saveSearch:
-      return {
-        ...state,
-        searchResults: {
-          ...state.searchResults,
-          search: action.payload.search,
-          results: action.payload.results
-        }
-      }
+      return {...state, heroesTeam: [...state.heroesTeam, action.payload]}
+    case ACTIONS.deleteHero:
+      return {...state, heroesTeam: state.heroesTeam.filter(hero => hero.id !== action.payload.id)}
     default:
       return state
   }

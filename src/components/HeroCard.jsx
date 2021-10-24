@@ -2,7 +2,7 @@ import { Card, Col, ListGroup, ListGroupItem, Row,Button } from "react-bootstrap
 
 
 export default function HeroCard({hero}) {
- const {id,name,powerstats} = hero
+ const {id,name,powerstats,image} = hero
   return(
     <div style={{
       display: "flex",
@@ -15,7 +15,7 @@ export default function HeroCard({hero}) {
     key={id}
   >
     <Card style={{flexBasis: "12rem", flexGrow: "1"}}>
-      <Card.Img variant="top" src="logo512.png"/>
+      <Card.Img variant="top" src={image.url}/>
       <Card.Body style={{textAlign:"center"}}>
         <Card.Title>{name}</Card.Title>
       </Card.Body>
