@@ -1,8 +1,18 @@
+import { useContext } from "react";
 import { Card, Col, ListGroup, ListGroupItem, Row,Button } from "react-bootstrap";
+import { HeroesContext } from "../store/HeroesProvider";
+import { ACTIONS } from "../store/HeroesReducer";
 
 
 export default function HeroCard({hero}) {
  const {id,name,powerstats,image} = hero
+ const [,dispatch] = useContext(HeroesContext)
+
+ const handleRemoveHero = (id) => {
+  dispatch({type:ACTIONS.deleteHero,
+    payload: id})
+}
+
   return(
     <div style={{
       display: "flex",
@@ -15,7 +25,7 @@ export default function HeroCard({hero}) {
     key={id}
   >
     <Card style={{flexBasis: "12rem", flexGrow: "1"}}>
-      <Card.Img variant="top" src={image.url}/>
+      <Card.Img variant="top" src={image}/>
       <Card.Body style={{textAlign:"center"}}>
         <Card.Title>{name}</Card.Title>
       </Card.Body>
@@ -92,7 +102,7 @@ export default function HeroCard({hero}) {
         justifyContent: "space-between"}}
       >
         <Button variant="outline-info">Detalle</Button>
-        <Button variant="outline-danger">Eliminar</Button>
+        <Button variant="outline-danger" onClick={()=>handleRemoveHero(id)}>Eliminar</Button>
       </Card.Body>
     </Card>
   </div>
