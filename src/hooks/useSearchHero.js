@@ -23,9 +23,7 @@ const newHero = (heroData) => {
       occupation: work.occupation,
       base: work.base,
     },
-    image: {
-      url: image.url,
-    },
+    image: image.url,
   };
   return hero;
 };
