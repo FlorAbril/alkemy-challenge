@@ -7,12 +7,16 @@ import { ACTIONS } from "../store/HeroesReducer";
 export default function HeroCard({hero}) {
  const {id,name,powerstats,image} = hero
  const [,dispatch] = useContext(HeroesContext)
+ const powerstatsList = Object.entries(powerstats)
 
  const handleRemoveHero = (id) => {
   dispatch({type:ACTIONS.deleteHero,
     payload: id})
 }
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
   return(
     <div style={{
       display: "flex",
@@ -37,70 +41,26 @@ export default function HeroCard({hero}) {
                 Powerstats
               </Row>
             </ListGroupItem>
-            <ListGroupItem>
-              <Row>
-                <Col>
-                  Intelligence
-                </Col>
-                <Col style={{textAlign: "right"}}>
-                  {powerstats.intelligence}
-                </Col>
-              </Row>
-            </ListGroupItem>
-            <ListGroupItem>
-              <Row>
-                <Col>
-                  Strength 
-                </Col>
-                <Col style={{textAlign: "right"}}>
-                  {powerstats.strength}
-                </Col>
-              </Row>
-            </ListGroupItem>
-            <ListGroupItem>
-              <Row>
-                <Col>
-                  Speed
-                </Col>
-                <Col style={{textAlign: "right"}}>
-                  {powerstats.speed}
-                </Col>
-              </Row>
-            </ListGroupItem>
-            <ListGroupItem>
-              <Row>
-                <Col>
-                  Durability
-                </Col>
-                <Col style={{textAlign: "right"}}>
-                  {powerstats.durability}
-                </Col>
-              </Row>
-            </ListGroupItem>
-            <ListGroupItem>
-              <Row>
-                <Col>
-                  Power
-                </Col>
-                <Col style={{textAlign: "right"}}>
-                  {powerstats.power}
-                </Col>
-              </Row>
-            </ListGroupItem>
-            <ListGroupItem>
-              <Row>
-                <Col>
-                  Combat
-                </Col>
-                <Col style={{textAlign: "right"}}>
-                  {powerstats.combat}
-                </Col>
-              </Row>
-            </ListGroupItem>
+            {powerstatsList.map(([key,value]) => {
+              const label = capitalizeFirstLetter(key)
+              return(
+              <ListGroupItem key={key}>
+                <Row>
+                  <Col>
+                    {label}
+                  </Col>
+                  <Col style={{textAlign: "right"}}>
+                    {value === 'null' ? '-' : value}
+                  </Col>
+                </Row>
+              </ListGroupItem>
+              )
+            })}
       </ListGroup>
       <Card.Body style={{display: "flex",
-        justifyContent: "space-between"}}
-      >
+        justifyContent: "space-between",
+        alignItems: "center"}}>
+      
         <Button variant="outline-info">Detalle</Button>
         <Button variant="outline-danger" onClick={()=>handleRemoveHero(id)}>Eliminar</Button>
       </Card.Body>
