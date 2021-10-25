@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react";
 
 export function useLocalStorage (key){
-    const [value, setValue] = useState(()=>localStorage.getItem(key))
+    const [value, setValue] = useState(()=>window.localStorage.getItem(key))
 
-    const saveValue = (value2)=> {
-      localStorage.setItem(key, value2)
-      setValue(value2)
+    const saveValue = (newValue)=> {
+      window.localStorage.setItem(key, newValue)
+      setValue(newValue)
       window.dispatchEvent(new Event('storage'))
+      window.dispatchEvent(new Event("local-storage"));
     }
+    
     useEffect(()=>{
-      window.onstorage = ()=>{
-        setValue(localStorage.getItem(key))
+      const handleLocalStorage = ()=>{
+        setValue(window.localStorage.getItem(key))
       }
+      window.addEventListener('local-storage', handleLocalStorage)
+      window.addEventListener('storage', handleLocalStorage)
     },
-    [key])
+    [key, value])
 
     return [value, saveValue]
 }
