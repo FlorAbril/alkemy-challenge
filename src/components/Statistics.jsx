@@ -26,8 +26,8 @@ export default function Statistics() {
     totalWeight += parseWeight;
   });
 
-  const averageHeight = totalHeight / validHeroes;
-  const averageWeight = totalWeight / validHeroes;
+  const averageHeight = validHeroes === 0 ? '-' : `${(totalHeight / validHeroes).toFixed(1)} cm`;
+  const averageWeight = validHeroes === 0 ? '-' : `${(totalWeight / validHeroes).toFixed(2)} kg`;
 
   heroesTeam.map((hero) => {
     for (let key in hero.powerstats) {
@@ -73,8 +73,8 @@ export default function Statistics() {
         <Card.Header> Average Height and Weight</Card.Header>
         <Card.Body>
           <ListGroup variant="flush">
-            <ListGroup.Item>Weight: {averageWeight} kg</ListGroup.Item>
-            <ListGroup.Item>Height: {averageHeight} cm</ListGroup.Item>
+            <ListGroup.Item>Weight: {averageWeight}</ListGroup.Item>
+            <ListGroup.Item>Height: {averageHeight}</ListGroup.Item>
           </ListGroup>
         </Card.Body>
       </Card>

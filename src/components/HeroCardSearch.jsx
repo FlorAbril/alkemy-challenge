@@ -8,7 +8,7 @@ const HeroCardSearch = ({ hero }) => {
     useContext(HeroesContext);
   const isGoodHero = hero.biography.alignment === "good";
   const isBadHero = hero.biography.alignment === "bad";
-  const isNeutralHero = hero.biography.alignment === "neutral";
+  const isNeutralHero = hero.biography.alignment === "neutral" || '-';
   
   const heroIsInTeam = (id) => {
     return heroesTeam.find((hero) => hero.id === id);
