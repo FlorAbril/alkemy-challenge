@@ -1,18 +1,25 @@
-import { useContext } from "react";
-import { Card, Col, ListGroup, ListGroupItem, Row,Button } from "react-bootstrap";
+import { useContext , useState} from "react";
+import { Card, Col, ListGroup, ListGroupItem, Row,Button,Modal } from "react-bootstrap";
 import { HeroesContext } from "../store/HeroesProvider";
 import { ACTIONS } from "../store/HeroesReducer";
 
 
 export default function HeroCard({hero}) {
- const {id,name,powerstats,image} = hero
+ const {id,name,powerstats,image,biography,appearance,workplace} = hero
  const [,dispatch] = useContext(HeroesContext)
  const powerstatsList = Object.entries(powerstats)
+ const [showModal, setShowModal] = useState(false);
+  const appearanceList = Object.entries(appearance)
+
+ const handleCloseModal = () => setShowModal(false);
+ const handleShowModal = () => setShowModal(true);
 
  const handleRemoveHero = (id) => {
   dispatch({type:ACTIONS.deleteHero,
     payload: id})
 }
+
+
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -61,10 +68,69 @@ function capitalizeFirstLetter(string) {
         justifyContent: "space-between",
         alignItems: "center"}}>
       
-        <Button variant="outline-info">Detalle</Button>
+        <Button variant="outline-info" onClick={()=>handleShowModal()}>Detalle</Button>
         <Button variant="outline-danger" onClick={()=>handleRemoveHero(id)}>Eliminar</Button>
       </Card.Body>
     </Card>
+    <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ListGroup variant="flush">
+            <ListGroupItem>
+              <Row>
+                <Col>
+                  Full Name
+                </Col>
+                <Col style={{textAlign: "right"}}>
+                  {biography.fullName.length === 0 ? '-' : biography.fullName}
+                </Col>
+              </Row>
+            </ListGroupItem>
+            <ListGroupItem>
+              <Row>
+                <Col>
+                  Aliases
+                </Col>
+                <Col style={{textAlign: "right"}}>
+                  {biography.aliases.length === 0 ? '-' : biography.aliases.join(', ')}
+                </Col>
+              </Row>
+            </ListGroupItem>
+            {appearanceList.map(([key,value]) => {
+              const label = capitalizeFirstLetter(key)
+              return(
+              <ListGroupItem key={key}>
+                <Row>
+                  <Col>
+                    {label}
+                  </Col>
+                  <Col style={{textAlign: "right"}}>
+                    {(value === 'null' || value === '0 kg'  || value === '0 cm') ? '-' : value}
+                  </Col>
+                </Row>
+              </ListGroupItem>
+              )
+            })}
+            <ListGroupItem>
+              <Row>
+                <Col>
+                  Work Place
+                </Col>
+                <Col style={{textAlign: "right"}}>
+                  {workplace.length === 0 ? '-' : workplace}
+                </Col>
+              </Row>
+            </ListGroupItem>
+           </ListGroup> 
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="outline-dark" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
   </div>
   )
 }

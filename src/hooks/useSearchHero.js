@@ -16,13 +16,10 @@ const newHero = (heroData) => {
     appearance: {
       height: appearance.height[1],
       weight: appearance.weight[1],
-      eyeColor: appearance["eye-color"],
-      hairColor: appearance["hair-color"],
+      ["eye color"]: appearance["eye-color"],
+      ["hair color"]: appearance["hair-color"],
     },
-    work: {
-      occupation: work.occupation,
-      base: work.base,
-    },
+    workplace: work.base,
     image: image.url,
   };
   return hero;
