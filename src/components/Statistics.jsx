@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Card, ListGroup, ProgressBar } from "react-bootstrap";
+import { Card, Col, ListGroup, ProgressBar, Row } from "react-bootstrap";
 import { HeroesContext } from "../store/HeroesProvider";
 
 export default function Statistics() {
@@ -73,8 +73,26 @@ export default function Statistics() {
         <Card.Header> Average Height and Weight</Card.Header>
         <Card.Body>
           <ListGroup variant="flush">
-            <ListGroup.Item>Weight: {averageWeight}</ListGroup.Item>
-            <ListGroup.Item>Height: {averageHeight}</ListGroup.Item>
+            <ListGroup.Item>
+              <Row>
+                <Col>
+                  Weight: 
+                </Col>
+                <Col style={{textAlign:"right"}}>
+                  {averageWeight}
+                </Col>
+              </Row>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Row>
+                <Col>
+                  Height: 
+                </Col>
+                <Col style={{textAlign:"right"}}>
+                  {averageHeight}
+                </Col>
+              </Row>
+            </ListGroup.Item>
           </ListGroup>
         </Card.Body>
       </Card>
