@@ -49,7 +49,7 @@ export default function Statistics() {
   return (
     <div style={{ display: "flex", columnGap: "1em", flexWrap: "wrap" }}>
       <Card style={{ marginBottom: "1em", flexGrow: "1", flexBasis: "20rem" }}>
-        <Card.Header>Powerstats acumulados</Card.Header>
+        <Card.Header>Accumulated Powerstats</Card.Header>
         <Card.Body>
           <ListGroup variant="flush">
             {orderedPowerstats.map(([key, value]) => {
@@ -70,11 +70,11 @@ export default function Statistics() {
         </Card.Body>
       </Card>
       <Card style={{height:"fit-content"}}>
-        <Card.Header>Peso y altura promedios</Card.Header>
+        <Card.Header> Average Height and Weight</Card.Header>
         <Card.Body>
           <ListGroup variant="flush">
-            <ListGroup.Item>Peso: {averageWeight} kg</ListGroup.Item>
-            <ListGroup.Item>Altura: {averageHeight} cm</ListGroup.Item>
+            <ListGroup.Item>Weight: {averageWeight} kg</ListGroup.Item>
+            <ListGroup.Item>Height: {averageHeight} cm</ListGroup.Item>
           </ListGroup>
         </Card.Body>
       </Card>

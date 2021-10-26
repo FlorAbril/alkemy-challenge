@@ -10,12 +10,12 @@ export default function Home() {
       <Navbar/>
       <div
         style={{
-          margin: "1em",
+          margin: "1.5rem",
         }}
       >
-        <h1>Tu equipo</h1>
+        <h1>Your Team</h1>
         <Heroes />
-        <h1>Estadísticas</h1>
+        <h1>Statistics</h1>
         <Statistics />
       </div>
     </>

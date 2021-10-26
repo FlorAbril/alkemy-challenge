@@ -33,7 +33,7 @@ const HeroCardSearch = ({ hero }) => {
     >
       <span className="d-inline-block">
         <Button variant="outline-success" disabled>
-          Añadir
+          Add to team
         </Button>
       </span>
     </OverlayTrigger>
@@ -50,10 +50,10 @@ const HeroCardSearch = ({ hero }) => {
             variant="outline-danger"
             onClick={() => handleRemoveHero(hero.id)}
           >
-            Eliminar
+            Delete
           </Button>
           ) ||
-            (heroesTeam.length > 5 && disabledButton("No puedes añadir más de 6 héroes")) ||
+            (heroesTeam.length > 5 && disabledButton("You can't add more than 6 heroes")) ||
           ( heroesTeam.length < 6 &&
             !heroIsInTeam(hero.id) &&
             ((goodHeroes < 3 && isGoodHero) || (badHeroes < 3 && isBadHero) || isNeutralHero) &&
@@ -61,12 +61,12 @@ const HeroCardSearch = ({ hero }) => {
                 variant="outline-success"
                 onClick={() => handleSaveHero(hero)}
               >
-                Añadir
+                Add to team
             </Button>
 
           )||
-           (!heroIsInTeam(hero.id) && isGoodHero && goodHeroes > 2 && disabledButton('No puedes añadir mas héroes buenos')) ||
-           (!heroIsInTeam(hero.id) && isBadHero && badHeroes > 2 && disabledButton('No puedes añadir mas villanos'))
+           (!heroIsInTeam(hero.id) && isGoodHero && goodHeroes > 2 && disabledButton("You can't add more good heroes to your team")) ||
+           (!heroIsInTeam(hero.id) && isBadHero && badHeroes > 2 && disabledButton("You can't add more villians to your team"))
            }
         
   

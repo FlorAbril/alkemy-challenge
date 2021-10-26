@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Alert } from "react-bootstrap";
 import { HeroesContext } from "../store/HeroesProvider";
 import HeroCard from "./HeroCard";
 
@@ -15,7 +16,12 @@ export default function Heroes() {
     }}>
       {heroesTeam.length === 0 
         ? 
-          <h4>Aún no tienes un equipo</h4>
+        <Alert variant="info">
+        <Alert.Heading>Seems like you don't have a team yet</Alert.Heading>
+        <p>
+          Find and add heroes to your team to start!
+        </p>
+      </Alert>
         : 
         heroesTeam.map(hero =><HeroCard key={hero.id} hero={hero}/>)
       }

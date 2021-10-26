@@ -68,8 +68,8 @@ function capitalizeFirstLetter(string) {
         justifyContent: "space-between",
         alignItems: "center"}}>
       
-        <Button variant="outline-info" onClick={()=>handleShowModal()}>Detalle</Button>
-        <Button variant="outline-danger" onClick={()=>handleRemoveHero(id)}>Eliminar</Button>
+        <Button variant="outline-info" onClick={()=>handleShowModal()}>Details</Button>
+        <Button variant="outline-danger" onClick={()=>handleRemoveHero(id)}>Delete</Button>
       </Card.Body>
     </Card>
     <Modal show={showModal} onHide={handleCloseModal}>

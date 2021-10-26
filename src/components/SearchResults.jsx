@@ -1,10 +1,11 @@
 import { useContext, useState} from "react"
-import { Spinner, OverlayTrigger } from "react-bootstrap"
+import { Spinner, OverlayTrigger, Alert, Row, Col } from "react-bootstrap"
 import { HeroesContext } from "../store/HeroesProvider"
 import Navbar from "./Navbar"
 import { useQueryParams } from "../hooks/useQueryParams"
 import useSearchHero from "../hooks/useSearchHero"
 import HeroCardSearch from "./HeroCardSearch"
+import { Link } from "react-router-dom"
 
 export default function SearchResults() {
   const [state] = useContext(HeroesContext)
@@ -14,7 +15,18 @@ export default function SearchResults() {
   return(
     <>
       <Navbar/>
-      <h4>Resultados para: {search}</h4>
+      <div style={{margin:"1em 1em 0 1em"}}>
+        <Row>
+          <Col>
+            <h4>Results for: {search}</h4>
+          </Col>
+          <Col style={{textAlign:"right"}}>
+            <Link to="/" style={{color:"inherit", textDecoration:"none"}}>
+              <h5>← Back to Home </h5>
+            </Link>
+          </Col>
+        </Row>
+      </div>
       <div style={{
         display: "flex",
         flexWrap: "wrap",
@@ -25,7 +37,9 @@ export default function SearchResults() {
         {loading ? 
           <Spinner animation="border" variant="primary" />
         : error ?
-          <h4>No hay resultados :(</h4>  
+          <Alert variant="info">
+            There are no results for your search
+          </Alert>  
         : results.map((hero) =>{
           return(
             <HeroCardSearch key={hero.id} hero={hero}/>
