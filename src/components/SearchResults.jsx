@@ -1,10 +1,10 @@
 import { useContext} from "react"
-import { Spinner, OverlayTrigger, Alert, Row, Col } from "react-bootstrap"
+import { Spinner, Alert, Row, Col } from "react-bootstrap"
 import { HeroesContext } from "../store/HeroesProvider"
 import Navbar from "./Navbar"
 import { useQueryParams } from "../hooks/useQueryParams"
 import useSearchHero from "../hooks/useSearchHero"
-import HeroCardSearch from "./HeroCardSearch"
+import AddHeroCard from "./AddHeroCard"
 import { Link } from "react-router-dom"
 
 export default function SearchResults() {
@@ -42,7 +42,7 @@ export default function SearchResults() {
           </Alert>  
         : results.map((hero) =>{
           return(
-            <HeroCardSearch key={hero.id} hero={hero}/>
+            <AddHeroCard key={hero.id} hero={hero}/>
           )
         })}
       </div>
