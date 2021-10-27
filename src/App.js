@@ -25,7 +25,7 @@ function App() {
         </Route>
 
         <Route path="/search">
-          <SearchResults/>
+          {!token ? <Redirect to="/login" /> : <SearchResults/>}
         </Route>
       
       </Router>

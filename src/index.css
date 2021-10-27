@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.logout-label{
+  color: white; 
+  cursor: pointer
+}
+
+.logout-label:hover{
+  text-decoration: underline;
+}

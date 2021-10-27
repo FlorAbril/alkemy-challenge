@@ -3,9 +3,11 @@ import { FormControl, InputGroup, Button } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export default function HeroNavbar() {
   const history = useHistory();
+  const [, saveValue] = useLocalStorage("token");
 
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {
@@ -17,7 +19,7 @@ export default function HeroNavbar() {
   });
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    saveValue("")
   }
 
   return (
@@ -45,10 +47,11 @@ export default function HeroNavbar() {
             </Link>
           </Navbar.Brand>
           <label onClick={handleLogout}
-            style={{color:"white", cursor:'pointer'}}
+            className="logout-label"
           >
             Logout
           </label>
+          {/* <Button variant="outline-light" size="sm" onClick={handleLogout}>Logout</Button> */}
         </div>
         
           <InputGroup as="form" onSubmit={handleSubmit} size="sm" 
