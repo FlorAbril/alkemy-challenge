@@ -11,7 +11,7 @@ export default function SearchResults() {
   const [state] = useContext(HeroesContext)
   const search = useQueryParams().get('search')
   const {results,loading,error} = useSearchHero(search)
-  console.log(state);
+  
   return(
     <>
       <Navbar/>
