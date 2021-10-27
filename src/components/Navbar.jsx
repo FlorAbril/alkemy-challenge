@@ -32,7 +32,8 @@ export default function HeroNavbar() {
             Heroes Team
           </Link>
         </Navbar.Brand>
-        <InputGroup size="sm" style={{ flexBasis: "15rem" }}>
+
+        <InputGroup as="form" onSubmit={handleSubmit} size="sm" style={{ flexBasis: "15rem" }}>
           <FormControl
             placeholder="Find by name"
             aria-label="Buscar"
@@ -43,7 +44,7 @@ export default function HeroNavbar() {
             onSubmit={handleSubmit}
             value={values.search}
           />
-          <Button
+          <Button type="submit"
             variant="outline-light"
             id="search-btn"
             onClick={handleSubmit}
