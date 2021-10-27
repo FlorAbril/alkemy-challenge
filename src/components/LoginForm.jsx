@@ -1,13 +1,18 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Alert from "react-bootstrap/Alert";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import axios from "axios";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useState } from "react";
+
 
 export default function LoginForm() {
   const [, setToken] = useLocalStorage('token')
+  const [error,setError] = useState('')
+
   const schema = Yup.object({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
@@ -16,10 +21,10 @@ export default function LoginForm() {
   });
 
   return (
+    <div className="login-form">
     <div style = {{ width:" 100%",
       display: "flex",
       justifyContent: "center",
-      height: "100vh",
       alignItems: "center" }}
     >
       <Formik
@@ -40,7 +45,7 @@ export default function LoginForm() {
             .catch(({ response }) => {
               const message = response.data.error;
               const status = `Error ${response.status}: ${response.statusText}`;
-              alert(JSON.stringify(`${message}. ${status}`));
+              setError(JSON.stringify(`${message}. ${status}`));
             });
         }}
       >
@@ -101,6 +106,8 @@ export default function LoginForm() {
           </Card>
         )}
       </Formik>
+    </div>
+      {error && <Alert variant="danger">{error}</Alert>}
     </div>
   );
 }
