@@ -32,7 +32,7 @@ export default function SearchResults() {
         flexWrap: "wrap",
         gap: "1em",
         justifyContent: "center",
-        margin: "1em 0"
+        margin: "1em"
       }}>
         {loading ? 
           <Spinner animation="border" variant="primary" />

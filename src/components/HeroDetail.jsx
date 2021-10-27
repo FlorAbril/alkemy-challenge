@@ -1,5 +1,4 @@
-import Button from "@restart/ui/esm/Button"
-import { Col, ListGroup, ListGroupItem, Modal, Row } from "react-bootstrap"
+import { Button, Col, ListGroup, ListGroupItem, Modal, Row } from "react-bootstrap"
 
 
 const HeroDetail = ({ hero, show, handleClose}) => {
@@ -10,7 +9,7 @@ const HeroDetail = ({ hero, show, handleClose}) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 return (
-  <Modal show={show} onHide={handleClose}>
+  <Modal centered fullscreen="md-down" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{name}</Modal.Title>
         </Modal.Header>

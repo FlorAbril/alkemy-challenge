@@ -62,8 +62,8 @@ const AddHeroCard = ({ hero }) => {
   }
 
   return (
-    <Card style={{ width: "12rem" }}>
-      <Card.Img variant="top" src={hero.image} style={{height:'15rem'}}/>
+    <Card style={{flexBasis: "13rem",maxWidth: "20rem",flexGrow:"1"}}>
+      <Card.Img variant="top" src={hero.image}  />
       <Card.Body style={{textAlign:'center'}}>
         <Card.Title>{hero.name}</Card.Title>
         {AddCardButton()}   
