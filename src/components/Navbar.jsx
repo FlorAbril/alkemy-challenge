@@ -16,6 +16,10 @@ export default function HeroNavbar() {
     },
   });
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+  }
+
   return (
     <Navbar bg="dark" variant="dark">
       <div
@@ -24,34 +28,54 @@ export default function HeroNavbar() {
           alignItems: "center",
           justifyContent: "space-between",
           width: "100%",
-          paddingRight: "1em",
+          padding: "0 1em",
+          flexWrap: "wrap", 
+          columnGap: "1em"
         }}
       >
-        <Navbar.Brand style={{ marginLeft: "1em" }}>
-          <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-            Heroes Team
-          </Link>
-        </Navbar.Brand>
-
-        <InputGroup as="form" onSubmit={handleSubmit} size="sm" style={{ flexBasis: "15rem" }}>
-          <FormControl
-            placeholder="Find by name"
-            aria-label="Buscar"
-            id="search"
-            name="search"
-            type="text"
-            onChange={handleChange}
-            onSubmit={handleSubmit}
-            value={values.search}
-          />
-          <Button type="submit"
-            variant="outline-light"
-            id="search-btn"
-            onClick={handleSubmit}
+        <div style={{
+          flexGrow: "4",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between"
+        }}>
+          <Navbar.Brand >
+            <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+              Heroes Team
+            </Link>
+          </Navbar.Brand>
+          <label onClick={handleLogout}
+            style={{color:"white", cursor:'pointer'}}
           >
-            Search
-          </Button>
-        </InputGroup>
+            Logout
+          </label>
+        </div>
+        
+          <InputGroup as="form" onSubmit={handleSubmit} size="sm" 
+            style={{ 
+              flexBasis: "15rem",
+              flexGrow: "1"
+            }}>
+            <FormControl
+              placeholder="Find by name"
+              aria-label="Buscar"
+              id="search"
+              name="search"
+              type="text"
+              onChange={handleChange}
+              onSubmit={handleSubmit}
+              value={values.search}
+            />
+            <Button type="submit"
+              variant="outline-light"
+              id="search-btn"
+              onClick={handleSubmit}
+            >
+              Search
+            </Button>
+          </InputGroup>
+          
+        
       </div>
     </Navbar>
   );
