@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Card, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Card, Button, OverlayTrigger, Tooltip, Badge, ListGroup } from "react-bootstrap";
 import { HeroesContext } from "../store/HeroesProvider";
 import { ACTIONS } from "../store/HeroesReducer";
 
@@ -63,15 +63,30 @@ const AddHeroCard = ({ hero }) => {
 
   return (
     <Card style={{ width: "12rem" }}>
-      <Card.Img variant="top" src={hero.image} />
-      <Card.Body style={{ textAlign: "center" }}>
+      <Card.Img variant="top" src={hero.image} style={{height:'15rem'}}/>
+      <Card.Body style={{textAlign:'center'}}>
         <Card.Title>{hero.name}</Card.Title>
-
-        { AddCardButton() }
-  
-      </Card.Body>
+        {AddCardButton()}   
+      </Card.Body> 
+      <ListGroup variant="flush">
+        <ListGroup.Item>
+          <Badge pill bg={isGoodHero ? 'success' : isBadHero ? 'danger' : 'secondary'}>
+            {isGoodHero ? 'Good' : isBadHero ? 'Bad' : 'Neutral'}
+          </Badge>
+        </ListGroup.Item>
+      </ListGroup>
     </Card>
   );
 };
 
 export default AddHeroCard;
+{/* <ListGroup variant="flush">
+          <ListGroup.Item>
+            { AddCardButton() }
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Badge pill bg={isGoodHero ? 'success' : isBadHero ? 'danger' : 'secondary'}>
+              {isGoodHero ? 'Good' : isBadHero ? 'Bad' : 'Neutral'}
+            </Badge>
+          </ListGroup.Item>
+        </ListGroup> */}
