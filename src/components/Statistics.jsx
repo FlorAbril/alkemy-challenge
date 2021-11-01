@@ -48,7 +48,7 @@ export default function Statistics() {
 
   return (
     <div style={{ display: "flex", columnGap: "1em", flexWrap: "wrap" }}>
-      <Card style={{ marginBottom: "1em", flexGrow: "1", flexBasis: "20rem" }}>
+      <Card style={{ marginBottom: "1em", flexGrow: "5", flexBasis: "20rem" }}>
         <Card.Header>Accumulated Powerstats</Card.Header>
         <Card.Body>
           <ListGroup variant="flush">
@@ -69,7 +69,7 @@ export default function Statistics() {
           </ListGroup>
         </Card.Body>
       </Card>
-      <Card style={{height:"fit-content"}}>
+      <Card style={{height:"fit-content", flexGrow:"1"}}>
         <Card.Header> Average Height and Weight</Card.Header>
         <Card.Body>
           <ListGroup variant="flush">
