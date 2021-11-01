@@ -1,6 +1,4 @@
-import { useContext} from "react"
 import { Spinner, Alert, Row, Col } from "react-bootstrap"
-import { HeroesContext } from "../store/HeroesProvider"
 import Navbar from "../components/Navbar"
 import { useQueryParams } from "../hooks/useQueryParams"
 import useSearchHero from "../hooks/useSearchHero"
@@ -8,7 +6,6 @@ import AddHeroCard from "../components/AddHeroCard"
 import { Link } from "react-router-dom"
 
 export default function SearchResults() {
-  const [state] = useContext(HeroesContext)
   const search = useQueryParams().get('search')
   const {results,loading,error} = useSearchHero(search)
   

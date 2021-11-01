@@ -1,16 +1,15 @@
 import { useContext , useState} from "react";
-import { Card, Col, ListGroup, ListGroupItem, Row,Button,Modal } from "react-bootstrap";
+import { Card, Col, ListGroup, ListGroupItem, Row,Button } from "react-bootstrap";
 import { HeroesContext } from "../store/HeroesProvider";
 import { ACTIONS } from "../store/HeroesReducer";
 import HeroDetail from "./HeroDetail";
 
 
 export default function HeroCard({hero}) {
- const {id,name,powerstats,image,biography,appearance,workplace} = hero
+ const {id,name,powerstats,image} = hero
  const [,dispatch] = useContext(HeroesContext)
  const powerstatsList = Object.entries(powerstats)
  const [showModal, setShowModal] = useState(false);
-  // const appearanceList = Object.entries(appearance)
 
  const handleCloseModal = () => setShowModal(false);
  const handleShowModal = () => setShowModal(true);
@@ -78,62 +77,3 @@ export default function HeroCard({hero}) {
   </div>
   ) 
 }
-//   <Modal show={showModal} onHide={handleCloseModal}>
-//   <Modal.Header closeButton>
-//     <Modal.Title>{name}</Modal.Title>
-//   </Modal.Header>
-//   <Modal.Body>
-//     <ListGroup variant="flush">
-//       <ListGroupItem>
-//         <Row>
-//           <Col>
-//             Full Name
-//           </Col>
-//           <Col style={{textAlign: "right"}}>
-//             {biography.fullName.length === 0 ? '-' : biography.fullName}
-//           </Col>
-//         </Row>
-//       </ListGroupItem>
-//       <ListGroupItem>
-//         <Row>
-//           <Col>
-//             Aliases
-//           </Col>
-//           <Col style={{textAlign: "right"}}>
-//             {biography.aliases.length === 0 ? '-' : biography.aliases.join(', ')}
-//           </Col>
-//         </Row>
-//       </ListGroupItem>
-//       {appearanceList.map(([key,value]) => {
-//         const label = capitalizeFirstLetter(key)
-//         return(
-//         <ListGroupItem key={key}>
-//           <Row>
-//             <Col>
-//               {label}
-//             </Col>
-//             <Col style={{textAlign: "right"}}>
-//               {(value === 'null' || value === '0 kg'  || value === '0 cm') ? '-' : value}
-//             </Col>
-//           </Row>
-//         </ListGroupItem>
-//         )
-//       })}
-//       <ListGroupItem>
-//         <Row>
-//           <Col>
-//             Work Place
-//           </Col>
-//           <Col style={{textAlign: "right"}}>
-//             {workplace.length === 0 ? '-' : workplace}
-//           </Col>
-//         </Row>
-//       </ListGroupItem>
-//      </ListGroup> 
-//   </Modal.Body>
-//   <Modal.Footer>
-//     <Button variant="outline-dark" onClick={handleCloseModal}>
-//       Close
-//     </Button>
-//   </Modal.Footer>
-// </Modal>

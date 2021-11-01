@@ -80,13 +80,3 @@ const AddHeroCard = ({ hero }) => {
 };
 
 export default AddHeroCard;
-{/* <ListGroup variant="flush">
-          <ListGroup.Item>
-            { AddCardButton() }
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <Badge pill bg={isGoodHero ? 'success' : isBadHero ? 'danger' : 'secondary'}>
-              {isGoodHero ? 'Good' : isBadHero ? 'Bad' : 'Neutral'}
-            </Badge>
-          </ListGroup.Item>
-        </ListGroup> */}
