@@ -1,12 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import LoginForm from './components/LoginForm';
+import Login from './pages/Login';
 import {
   BrowserRouter as Router,
   Route,
   Redirect
 } from "react-router-dom";
 import Home from './pages/Home';
-import SearchResults from './components/SearchResults';
+import SearchResults from './pages/SearchResults';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         </Route>
         
         <Route path="/login">
-          {!token ? <LoginForm/> : <Redirect to="/" />} 
+          {!token ? <Login/> : <Redirect to="/" />} 
         </Route>
 
         <Route path="/search">

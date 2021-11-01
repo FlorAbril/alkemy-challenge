@@ -9,7 +9,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useState } from "react";
 
 
-export default function LoginForm() {
+export default function Login() {
   const [, setToken] = useLocalStorage('token')
   const [error,setError] = useState('')
 
