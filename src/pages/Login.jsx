@@ -28,24 +28,23 @@ export default function Login() {
       alignItems: "center" }}
     >
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: "challenge@alkemy.org", password: "react" }}
         validationSchema={schema}
         onSubmit={async (values) => {
           axios({
             method: "post",
-            url: "http://challenge-react.alkemy.org/",
+            url: "/api/login",
             data: {
               email: values.email,
               password: values.password,
             },
           })
-            .then((res) => {
-              setToken(res.data.token);
+            .then(({data}) => {
+              setToken(data.token);
             })
             .catch(({ response }) => {
               const message = response.data.error;
-              const status = `Error ${response.status}: ${response.statusText}`;
-              setError(JSON.stringify(`${message}. ${status}`));
+              setError(JSON.stringify(message));
             });
         }}
       >
